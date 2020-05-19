@@ -16,6 +16,7 @@ namespace ExamScheduling
     {
         ToMau tb = new ToMau();
         DataTable table = new DataTable();
+        List<HocPhan> HP = new List<HocPhan>();
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +34,6 @@ namespace ExamScheduling
         private void ToMau()
         {
             int n = table.Rows.Count;
-            List<HocPhan> HP = new List<HocPhan>();
             HocPhan hp0 = new HocPhan();
             HP.Add(hp0);
             for (int i = 0; i < n; i++)
@@ -81,6 +81,36 @@ namespace ExamScheduling
             {
                 label1.Text = label1.Text + HP[i].show();
             }
+
+        }
+        private void loadGrid()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("MaMon", typeof(int)));
+            dt.Columns.Add(new DataColumn("NgayThi", typeof(DateTime)));
+            dt.Columns.Add(new DataColumn("Phong", typeof(int)));
+            DateTime aDate = new DateTime(2020, 6, 5);
+            for (int i = 1; i < 4; i++)
+            {
+                DateTime Date = aDate.AddDays(i);
+                int j = 1;
+                foreach (HocPhan hp in HP)
+                {
+                    List<HocPhan> HPtemp = new List<HocPhan>();
+                    if (hp.Color == i)
+                    {
+                        HPtemp.Add(hp);
+                    }
+                   
+                    foreach (HocPhan hptemp in HPtemp)
+                    {
+                        dt.Rows.Add(hptemp.MaHP, Date, j);
+                        j++;
+                    }
+                }
+                
+            }
+            dataGridView2.DataSource = dt;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -88,7 +118,8 @@ namespace ExamScheduling
             DBAccess();
 
             ToMau();
-            
+
+            loadGrid();
         }
     }
 }

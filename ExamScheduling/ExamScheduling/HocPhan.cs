@@ -26,7 +26,7 @@ namespace ExamScheduling
         }
         public string show()
         {
-            return "Mã HP: " + maHP + " / Màu: " + Color + "\n";
+            return "Mã HP: " + maHP + " / Màu: " + Color + "\n \n";
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -78,21 +79,21 @@ namespace ExamScheduling
 		}
 		public void convertDS1(int n, List<HocPhan> HP, int[,] b)
 		{
-			for (int i = 0; i < n; i++)
+			for (int i = 1; i <= n; i++)
 			{
-				for(int j = 0; j < HP[i+1].Sv.Count; j++)	
+				for(int j = 0; j < HP[i].Sv.Count; j++)	
 				{
-					for (int k = i + 1; k < n; k++)
+					for (int k = i + 1; k <= n; k++)
 					{
 						if (b[i, k] == 1)
 						{
 							continue;
 						}
-						for(int h = 0; h < HP[k+1].Sv.Count; h++) 	
+						for(int h = 0; h < HP[k].Sv.Count; h++) 	
 						{
-							if (HP[i+1].Sv[j] == HP[k+1].Sv[h])
+							if (HP[i].Sv[j] == HP[k].Sv[h])
 							{
-								b[i + 1, k + 1] = b[k + 1, i + 1] = 1;
+								b[i, k] = b[k, i] = 1;
 								break;
 							}
 						}
