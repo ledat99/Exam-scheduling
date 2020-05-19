@@ -39,7 +39,7 @@ namespace ExamScheduling
             HP.Add(hp0);
             for (int i = 0; i < n; i++)
             {
-                HocPhan hp = new HocPhan(Convert.ToInt32(table.Rows[i]["MaMon"]));
+                HocPhan hp = new HocPhan(table.Rows[i]["MaMon"].ToString());
                 string s = table.Rows[i]["MaSV"].ToString().TrimEnd(',');
                 string[] arrS = s.Split(',');
                 int j = 0;
@@ -77,7 +77,7 @@ namespace ExamScheduling
         private void loadGrid()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("MaMon", typeof(int)));
+            dt.Columns.Add(new DataColumn("MaMon", typeof(string)));
             dt.Columns.Add(new DataColumn("NgayThi", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Phong", typeof(int)));
             DateTime aDate = dateTimePicker1.Value.AddDays(-1);

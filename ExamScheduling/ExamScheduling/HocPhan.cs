@@ -8,16 +8,18 @@ namespace ExamScheduling
 {
     class HocPhan
     {
-        private int maHP, color=0, tgThi=1, maP=0;
+        private string maHP;
+        private int color = 0;
+        //private int tgThi = 1, maP = 0;
         private List<int> sv;
-        public HocPhan(int ma)
+        public HocPhan(string ma)
         {
             sv = new List<int>();
             this.maHP = ma;
         }
         public HocPhan()
         { }
-        public int MaHP { get => this.maHP; set => this.maHP = value; }
+        public string MaHP { get => this.maHP; set => this.maHP = value; }
         public int Color { get => color; set => color = value; }
         public List<int> Sv { get => sv; set => sv = value; }
         public void addSV(int a)
