@@ -90,7 +90,7 @@ namespace ExamScheduling
             dt.Columns.Add(new DataColumn("NgayThi", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Phong", typeof(int)));
             DateTime aDate = new DateTime(2020, 6, 5);
-            for (int i = 1; i < 4; i++)
+            for (int i = 1; i <= tb.Mau; i++)
             {
                 DateTime Date = aDate.AddDays(i);
                 int j = 1;

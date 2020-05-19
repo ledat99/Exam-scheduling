@@ -9,6 +9,10 @@ namespace ExamScheduling
 {
     class ToMau
     {
+		private int mau;
+
+		public int Mau { get => mau; set => mau = value; }
+
 		public void MangDinh(int n, int[] dinh)
 		{
 			for (int i = 1; i <= n; i++)
@@ -48,7 +52,7 @@ namespace ExamScheduling
 		}
 		public void Tomau1(int[,] b, int[] dinh, int n,List<HocPhan> HP)
 		{
-			int mau = 0;
+			mau = 0;
 			for (int i = 1; i <= n; i++)
 			{
 				if (HP[dinh[i]].Color == 0)
