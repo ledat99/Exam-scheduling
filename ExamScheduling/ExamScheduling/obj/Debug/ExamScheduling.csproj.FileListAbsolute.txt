@@ -18,3 +18,13 @@ C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\ob
 C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.exe
 C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.pdb
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\bin\Debug\ExamScheduling.exe.config
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\bin\Debug\ExamScheduling.exe
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\bin\Debug\ExamScheduling.pdb
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csprojAssemblyReference.cache
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.FormLapLich.resources
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.Properties.Resources.resources
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.GenerateResource.cache
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.CoreCompileInputs.cache
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.exe
+D:\IT\Ki2-nam3\ttnhom\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.pdb
