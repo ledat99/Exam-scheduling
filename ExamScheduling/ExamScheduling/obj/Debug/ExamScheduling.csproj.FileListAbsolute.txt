@@ -8,3 +8,13 @@ C:\Users\Admin\source\repos\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduli
 C:\Users\Admin\source\repos\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.exe
 C:\Users\Admin\source\repos\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.pdb
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\bin\Debug\ExamScheduling.exe.config
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\bin\Debug\ExamScheduling.exe
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\bin\Debug\ExamScheduling.pdb
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.Form1.resources
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.exe
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.pdb

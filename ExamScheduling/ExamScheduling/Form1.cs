@@ -16,7 +16,7 @@ namespace ExamScheduling
     {
         ToMau tb = new ToMau();
         DataTable table = new DataTable();
-        List<HocPhan> HP = new List<HocPhan>();
+        List<HocPhan> HP;
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace ExamScheduling
         }
         private void ToMau()
         {
+            HP = new List<HocPhan>();
             int n = table.Rows.Count;
             HocPhan hp0 = new HocPhan();
             HP.Add(hp0);
@@ -49,16 +50,6 @@ namespace ExamScheduling
                 }
                 HP.Add(hp);
             }
-            //show danh sach sv cua lop hp
-            //for (int i = 0; i < n; i++)
-            //{
-            //    for(int j=0;j<HP[i+1].Sv.Count;j++)
-            //    {
-            //        label1.Text = label1.Text + HP[i+1].Sv[j]+"  ";
-            //    }
-            //    label1.Text += "\n";
-            //}
-
 
             int[,] H = new int[n + 1, n + 1];
             for (int i = 1; i <= n; i++)
@@ -76,7 +67,7 @@ namespace ExamScheduling
             tb.MangDinh(n, Dinh);
             tb.SortDinh(Dinh, Bac, n);
             tb.Tomau1(H, Dinh, n, HP);
-
+            label1.Text = "";
             for (int i = 1; i <= n; i++)
             {
                 label1.Text = label1.Text + HP[i].show();
@@ -89,7 +80,7 @@ namespace ExamScheduling
             dt.Columns.Add(new DataColumn("MaMon", typeof(int)));
             dt.Columns.Add(new DataColumn("NgayThi", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Phong", typeof(int)));
-            DateTime aDate = new DateTime(2020, 6, 5);
+            DateTime aDate = dateTimePicker1.Value.AddDays(-1);
             for (int i = 1; i <= tb.Mau; i++)
             {
                 DateTime Date = aDate.AddDays(i);
@@ -117,6 +108,11 @@ namespace ExamScheduling
 
             DBAccess();
 
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             ToMau();
 
             loadGrid();
