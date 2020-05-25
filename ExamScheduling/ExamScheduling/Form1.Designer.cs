@@ -143,7 +143,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.CustomFormat = "dd/mm/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(777, 79);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
@@ -152,9 +153,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label3.Location = new System.Drawing.Point(774, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 17);
+            this.label3.Size = new System.Drawing.Size(94, 18);
             this.label3.TabIndex = 5;
             this.label3.Text = "Ngày bắt đầu";
             // 
@@ -171,18 +173,20 @@
             // 
             // tbSLPhong
             // 
+            this.tbSLPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tbSLPhong.Location = new System.Drawing.Point(638, 79);
             this.tbSLPhong.Multiline = true;
             this.tbSLPhong.Name = "tbSLPhong";
-            this.tbSLPhong.Size = new System.Drawing.Size(90, 42);
+            this.tbSLPhong.Size = new System.Drawing.Size(90, 31);
             this.tbSLPhong.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label4.Location = new System.Drawing.Point(635, 47);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 17);
+            this.label4.Size = new System.Drawing.Size(112, 18);
             this.label4.TabIndex = 8;
             this.label4.Text = "Số lượng phòng";
             // 

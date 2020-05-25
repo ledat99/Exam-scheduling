@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,25 +17,23 @@ namespace ExamScheduling
     {
         ToMau tb = new ToMau();
         DataTable table = new DataTable();
-        List<HocPhan> HP;
         public Form1()
         {
             InitializeComponent();
         }
         private void DBAccess()
         {
-            //string con = @"Data Source=ADMIN\SQLEXPRESS;Initial Catalog=LICHTHI;Integrated Security=True";
-            string con ="Data Source = DESKTOP-VES4POV\\MSSQLSERVER03;Database =LICHTHI; Integrated Security=SSPI;";
-        SqlConnection Con = new SqlConnection(con);
+            string con = @"Data Source=ADMIN\SQLEXPRESS;Initial Catalog=LICHTHI;Integrated Security=True";
+            SqlConnection Con = new SqlConnection(con);
             SqlDataAdapter adapter = new SqlDataAdapter("exec P1", con);
             adapter.Fill(table);
             dataGridView1.DataSource = table;
 
 
         }
-        private void ToMau()
+        private List<HocPhan> ToMau()
         {
-            HP = new List<HocPhan>();
+            List<HocPhan> HP = new List<HocPhan>();
             int n = table.Rows.Count;
             HocPhan hp0 = new HocPhan();
             HP.Add(hp0);
@@ -74,54 +73,77 @@ namespace ExamScheduling
                 label1.Text = label1.Text + HP[i].show();
             }
 
+            return HP;
         }
-        private void loadGrid()
+        private void loadGrid(List<HocPhan> HP)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(new DataColumn("MaMon", typeof(string)));
-            dt.Columns.Add(new DataColumn("NgayThi", typeof(DateTime)));
-            dt.Columns.Add(new DataColumn("Phong", typeof(int)));
-            DateTime Date = dateTimePicker1.Value;
-            for (int i = 1; i <= tb.Mau; i++)
+            try
             {
-                List<HocPhan> HPtemp = new List<HocPhan>();
-                foreach (HocPhan hp in HP)
+                DataTable dt = new DataTable();
+                dt.Columns.Add(new DataColumn("MaMon", typeof(string)));
+                dt.Columns.Add(new DataColumn("NgayThi", typeof(string)));
+                dt.Columns.Add(new DataColumn("Phong", typeof(int)));
+                DateTime Date = dateTimePicker1.Value;
+                for (int i = 1; i <= tb.Mau; i++)
                 {
-                    if (hp.Color == i)
+                    List<HocPhan> HPtemp = new List<HocPhan>();
+                    foreach (HocPhan hp in HP)
                     {
-                        HPtemp.Add(hp);
+                        if (hp.Color == i)
+                        {
+                            HPtemp.Add(hp);
+                        }
                     }
+                    int k = 0;
+                    foreach (HocPhan hptemp in HPtemp)
+                    {
+                        if (k < Convert.ToInt32(tbSLPhong.Text))
+                        {
+                            k++;
+                            dt.Rows.Add(hptemp.MaHP, Date.ToString("dd/mm/yyyy"), k);
+                        }
+                        else
+                        {
+                            Date = Date.AddDays(1);
+                            dt.Rows.Add(hptemp.MaHP, Date.ToString("dd/mm/yyyy"), k);
+                            k = 0;
+                        }
+
+                    }
+                    Date = Date.AddDays(1);
                 }
-                int k = 0;
-                foreach (HocPhan hptemp in HPtemp)
-                {
-                    if (k < Convert.ToInt32(tbSLPhong.Text))
-                    {
-                        k++;
-                    }
-                    else
-                    {
-                        Date = Date.AddDays(1);
-                        k++;
-                    }
-                    dt.Rows.Add(hptemp.MaHP, Date, k);
-                }
-                Date = Date.AddDays(1);
+
+                dataGridView2.DataSource = dt;
+
             }
-            dataGridView2.DataSource = dt;
+            catch(Exception err)
+            {
+                MessageBox.Show(err.Message.ToString(), "Thông báo");
+
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
 
             DBAccess();
-
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ToMau();
-            loadGrid();
+            List<HocPhan> hp= ToMau();
+
+            if(tbSLPhong.Text=="")
+            {
+                MessageBox.Show("Nhập số lượng phòng", "Thông Báo");
+                tbSLPhong.Focus();
+            }
+            else
+            {
+                loadGrid(hp);
+            }    
+
+
         }
     }
 }
