@@ -28,3 +28,4 @@ C:\Users\Admin\Downloads\Exam-scheduling-e1cc3a5af863ce785c596722b46c0c3a67183f3
 C:\Users\Admin\Downloads\Exam-scheduling-e1cc3a5af863ce785c596722b46c0c3a67183f34\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Downloads\Exam-scheduling-e1cc3a5af863ce785c596722b46c0c3a67183f34\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.exe
 C:\Users\Admin\Downloads\Exam-scheduling-e1cc3a5af863ce785c596722b46c0c3a67183f34\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.pdb
+C:\Users\Admin\Documents\GitHub\Exam-scheduling\ExamScheduling\ExamScheduling\obj\Debug\ExamScheduling.Form2.resources

@@ -16,19 +16,26 @@ namespace ExamScheduling
     public partial class Form1 : Form
     {
         ToMau tb = new ToMau();
-        DataTable table = new DataTable();
+        DataTable table;
+        string con = @"Data Source=ADMIN\SQLEXPRESS;Initial Catalog=LICHTHI;Integrated Security=True";
         public Form1()
         {
             InitializeComponent();
         }
         private void DBAccess()
-        {
-            string con = @"Data Source=ADMIN\SQLEXPRESS;Initial Catalog=LICHTHI;Integrated Security=True";
+        {         
             SqlConnection Con = new SqlConnection(con);
+            Con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter("exec P1", con);
+            table = new DataTable();
             adapter.Fill(table);
+            table.Columns.Add(new DataColumn("Selected", typeof(bool)));
+            foreach (DataRow row in table.Rows)
+            {
+                row["Selected"] = false;
+            }
             dataGridView1.DataSource = table;
-
+            Con.Close();
 
         }
         private List<HocPhan> ToMau()
@@ -37,18 +44,27 @@ namespace ExamScheduling
             int n = table.Rows.Count;
             HocPhan hp0 = new HocPhan();
             HP.Add(hp0);
+            int count = 0;
             for (int i = 0; i < n; i++)
             {
-                HocPhan hp = new HocPhan(table.Rows[i]["MaMon"].ToString());
-                string s = table.Rows[i]["MaSV"].ToString().TrimEnd(',');
-                string[] arrS = s.Split(',');
-                int j = 0;
-                foreach (string arr in arrS)
+                if ((bool)table.Rows[i]["Selected"])
                 {
-                    hp.addSV(Convert.ToInt32(arr));
-                    j++;
+                    HocPhan hp = new HocPhan(table.Rows[i]["MaMon"].ToString());
+                    string s = table.Rows[i]["MaSV"].ToString().TrimEnd(',');
+                    string[] arrS = s.Split(',');
+                    int j = 0;
+                    foreach (string arr in arrS)
+                    {
+                        hp.addSV(Convert.ToInt32(arr));
+                        j++;
+                    }
+                    HP.Add(hp);
+                    count++;
                 }
-                HP.Add(hp);
+                else
+                {
+                    continue;
+                }
             }
 
             int[,] H = new int[n + 1, n + 1];
@@ -60,22 +76,22 @@ namespace ExamScheduling
                 }
             }
 
-            tb.convertDS1(n, HP, H);
+            tb.convertDS1(count, HP, H);
             int[] Bac = new int[10];
-            tb.BacDinh(H, n, Bac);
+            tb.BacDinh(H, count, Bac);
             int[] Dinh = new int[10];
-            tb.MangDinh(n, Dinh);
-            tb.SortDinh(Dinh, Bac, n);
-            tb.Tomau1(H, Dinh, n, HP);
+            tb.MangDinh(count, Dinh);
+            tb.SortDinh(Dinh, Bac, count);
+            tb.Tomau1(H, Dinh, count, HP);
             label1.Text = "";
-            for (int i = 1; i <= n; i++)
+            for (int i = 1; i <= count; i++)
             {
                 label1.Text = label1.Text + HP[i].show();
             }
 
             return HP;
         }
-        private void loadGrid(List<HocPhan> HP)
+        private DataTable loadGrid(List<HocPhan> HP)
         {
             try
             {
@@ -113,13 +129,13 @@ namespace ExamScheduling
                     Date = Date.AddDays(1);
                 }
 
-                dataGridView2.DataSource = dt;
-
+                //dataGridView2.DataSource = dt;
+                return dt;
             }
             catch(Exception err)
             {
                 MessageBox.Show(err.Message.ToString(), "Thông báo");
-
+                throw err;
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -140,10 +156,32 @@ namespace ExamScheduling
             }
             else
             {
-                loadGrid(hp);
+                //loadGrid(hp);
+                Form2 f2 = new Form2(loadGrid(hp));
+                f2.ShowDialog();
             }    
 
 
+        }
+
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                row["Selected"] = row["Selected"] == null ? false : !(bool)row["Selected"];
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar==(char)13)
+            {
+                string rowFilter = string.Format("[{0}] like '%{1}%'", "TenMon",textBox1.Text);
+                rowFilter += string.Format("OR [{0}] like '%{1}%'", "MaMon", textBox1.Text);
+                table.DefaultView.RowFilter = rowFilter;
+            }
         }
     }
 }
