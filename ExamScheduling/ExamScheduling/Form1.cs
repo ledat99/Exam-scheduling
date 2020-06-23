@@ -16,27 +16,30 @@ namespace ExamScheduling
     public partial class Form1 : Form
     {
         ToMau tb = new ToMau();
-        DataTable table;
-        string con = @"Data Source=ADMIN\SQLEXPRESS;Initial Catalog=LICHTHI;Integrated Security=True";
+        DataTable table = new DataTable();
+        FormChooseDB form = new FormChooseDB();
         public Form1()
         {
             InitializeComponent();
         }
         private void DBAccess()
-        {         
-            SqlConnection Con = new SqlConnection(con);
-            Con.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter("exec P1", con);
-            table = new DataTable();
+        {
+            //form.readDatathroughAdapter("exec P1", table);
+
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandText = "exec P1";
+            sqlCommand.CommandType = CommandType.Text;
+            sqlCommand.Connection = FormChooseDB.connection;
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            // DataTable dt = new DataTable();
             adapter.Fill(table);
-            table.Columns.Add(new DataColumn("Selected", typeof(bool)));
+            table.Columns.Add(new DataColumn("selected", typeof(bool)));
             foreach (DataRow row in table.Rows)
             {
-                row["Selected"] = false;
+                row["selected"] = false;
             }
-            dataGridView1.DataSource = table;
-            Con.Close();
 
+            dataGridView1.DataSource = table;
         }
         private List<HocPhan> ToMau()
         {
@@ -132,7 +135,7 @@ namespace ExamScheduling
                 //dataGridView2.DataSource = dt;
                 return dt;
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 MessageBox.Show(err.Message.ToString(), "Thông báo");
                 throw err;
@@ -142,14 +145,14 @@ namespace ExamScheduling
         {
 
             DBAccess();
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<HocPhan> hp= ToMau();
+            List<HocPhan> hp = ToMau();
 
-            if(tbSLPhong.Text=="")
+            if (tbSLPhong.Text == "")
             {
                 MessageBox.Show("Nhập số lượng phòng", "Thông Báo");
                 tbSLPhong.Focus();
@@ -159,7 +162,7 @@ namespace ExamScheduling
                 //loadGrid(hp);
                 Form2 f2 = new Form2(loadGrid(hp));
                 f2.ShowDialog();
-            }    
+            }
 
 
         }
@@ -176,9 +179,9 @@ namespace ExamScheduling
 
         private void textBox1_TextChanged(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar==(char)13)
+            if (e.KeyChar == (char)13)
             {
-                string rowFilter = string.Format("[{0}] like '%{1}%'", "TenMon",textBox1.Text);
+                string rowFilter = string.Format("[{0}] like '%{1}%'", "TenMon", textBox1.Text);
                 rowFilter += string.Format("OR [{0}] like '%{1}%'", "MaMon", textBox1.Text);
                 table.DefaultView.RowFilter = rowFilter;
             }
